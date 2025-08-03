@@ -1,5 +1,27 @@
-import { Action, ActionPanel, Detail, List } from "@raycast/api";
+import { Action, ActionPanel, List, LocalStorage } from "@raycast/api";
 import { useEffect, useState } from "react";
+const Fuse = require('fuse.js')
+
+const fuseOptions = {
+    isCaseSensitive: false,
+    // includeScore: false,
+    // ignoreDiacritics: false,
+    shouldSort: true,
+    // includeMatches: false,
+    // findAllMatches: false,
+    // minMatchCharLength: 1,
+    // location: 0,
+    threshold: 0.4,
+    distance: 100,
+    useExtendedSearch: false,
+    ignoreLocation: false,
+    // ignoreFieldNorm: false,
+    // fieldNormWeight: 1,
+    keys: [
+        "name",
+        "description",
+    ]
+};
 
 export default function Command() {
     const [categories, setCategories] = useState([]);
@@ -7,15 +29,6 @@ export default function Command() {
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        if (categories) {
-            const allTools = Object.entries(categories).flatMap(([category, tools]) =>
-                tools.map(tool => ({ ...tool, category }))
-            );
-            setTools(allTools);
-        }
-    }, [categories]);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -34,6 +47,15 @@ export default function Command() {
         fetchCategories();
     }, []);
 
+    useEffect(() => {
+        if (categories) {
+            const allTools = Object.entries(categories).flatMap(([category, tools]) =>
+                tools.map(tool => ({ ...tool, category }))
+            );
+            setTools(allTools);
+        }
+    }, [categories]);
+
     const handleSearch = (query) => {
         setSearch(query);
         if (query.length < 1) {
@@ -41,13 +63,19 @@ export default function Command() {
             return;
         }
 
-        const filteredResults = tools.filter((tool) =>
+        const fuse = new Fuse(tools, fuseOptions);
+
+        var filteredResults = tools.filter((tool) =>
             tool.name.toLowerCase().includes(query.toLowerCase()) ||
             tool.description.toLowerCase().includes(query.toLowerCase())
         );
+        if (filteredResults.length === 0) {
+            filteredResults = fuse.search(query).map(result => result.item);
+        }
 
         setResults(filteredResults);
     };
+
     return (
         <List
             isLoading={loading}
