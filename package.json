@@ -1,8 +1,8 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "modutools",
-  "title": "ModuTools Search",
-  "description": "Search tools on ModuTools",
+  "title": "ModuTools",
+  "description": "Search tools on ModuTools + Some tools",
   "icon": "extension-icon.png",
   "author": "editid",
   "license": "MIT",
@@ -12,12 +12,27 @@
       "title": "ModuTools",
       "description": "Search tools on ModuTools",
       "mode": "view"
+    },
+    {
+      "name": "uuid",
+      "title": "UUID Generator",
+      "description": "Generate a UUID",
+      "mode": "view"
+    },
+    {
+      "name": "timezone",
+      "title": "Timezones",
+      "description": "Search timezones",
+      "mode": "view"
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.101.1",
     "@raycast/utils": "^1.17.0",
-    "fuse.js": "^7.1.0"
+    "fuse.js": "^7.1.0",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.6.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.0.4",

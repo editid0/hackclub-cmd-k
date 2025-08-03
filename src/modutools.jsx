@@ -45,13 +45,14 @@ export default function Command() {
                 tools.map(tool => ({ ...tool, category }))
             );
             setTools(allTools);
+            setResults(allTools);
         }
     }, [categories]);
 
     const handleSearch = (query) => {
         setSearch(query);
-        if (query.length < 1) {
-            setResults([]);
+        if (query.length === 0) {
+            setResults(tools);
             return;
         }
 
@@ -81,7 +82,7 @@ export default function Command() {
                     subtitle={tool.description}
                     actions={
                         <ActionPanel>
-                            <Action.OpenInBrowser url={'https://beta.modu.tools' + tool.link} />
+                            <Action.OpenInBrowser url={'https://beta.modu.tools' + tool.link + '?utm_source=raycast'} />
                         </ActionPanel>
                     }
                 />
