@@ -1,16 +1,16 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "hello",
-  "title": "Hello World",
-  "description": "Sample extension for Raycast",
+  "name": "modutools",
+  "title": "ModuTools Search",
+  "description": "Search tools on ModuTools",
   "icon": "extension-icon.png",
-  "author": "samliu",
+  "author": "editid",
   "license": "MIT",
   "commands": [
     {
-      "name": "hello",
-      "title": "hello",
-      "description": "Say hello. This is a sample command!",
+      "name": "modutools",
+      "title": "ModuTools",
+      "description": "Search tools on ModuTools",
       "mode": "view"
     }
   ],
