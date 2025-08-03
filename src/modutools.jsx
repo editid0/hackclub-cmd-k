@@ -36,7 +36,7 @@ export default function Command() {
 
     const handleSearch = (query) => {
         setSearch(query);
-        if (query.length < 3) {
+        if (query.length < 1) {
             setResults([]);
             return;
         }
