@@ -1,6 +1,6 @@
 import { useState } from "react";
 import moment from "moment-timezone";
-import { List } from "@raycast/api";
+import { Action, ActionPanel, Clipboard, List } from "@raycast/api";
 const Fuse = require('fuse.js')
 
 const fuseOptions = {
@@ -15,6 +15,10 @@ const fuseOptions = {
         "description",
     ]
 };
+
+async function addToClipboard(text) {
+    await Clipboard.copy(text);
+}
 
 export default function Command() {
     const [query, setQuery] = useState("");
@@ -31,7 +35,11 @@ export default function Command() {
             onSearchTextChange={handleSearch}
         >
             {results.map((timezone) => (
-                <List.Item key={timezone} title={timezone} />
+                <List.Item key={timezone} title={timezone} actions={
+                    <ActionPanel>
+                        <Action title="Copy to Clipboard" onAction={() => addToClipboard(timezone)} />
+                    </ActionPanel>
+                } />
             ))}
         </List>
     );

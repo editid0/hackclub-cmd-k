@@ -16,6 +16,12 @@ export default function Command() {
         <Detail
             isLoading={!uuid}
             markdown={`### Generated UUID\n\n${uuid}`}
+            actions={
+                <ActionPanel>
+                    <Action title="Generate New UUID" onAction={generateUUID} />
+                    <Action.CopyToClipboard title="Copy UUID to Clipboard" content={uuid} />
+                </ActionPanel>
+            }
         />
     );
 }
