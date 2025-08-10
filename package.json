@@ -24,6 +24,12 @@
       "title": "Timezones",
       "description": "Search timezones",
       "mode": "view"
+    },
+    {
+      "name": "colors",
+      "title": "Color Converter",
+      "description": "Convert colors between different formats",
+      "mode": "view"
     }
   ],
   "dependencies": {
