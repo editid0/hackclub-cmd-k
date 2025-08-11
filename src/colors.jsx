@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Detail, Form, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, Detail, Form, List, showToast, Toast } from "@raycast/api";
 import { useForm, FormValidation } from "@raycast/utils";
 import { useState } from "react";
 
@@ -204,17 +204,23 @@ export default function Command() {
     return (
         <>
             {converted && (
-                <Detail
-                    markdown={`### Converted Colour\n\n- **Hex:** ${convertedColour.hex}\n- **RGB:** ${convertedColour.rgb}\n- **HSL:** ${convertedColour.hsl}`}
-                    actions={
+                <List>
+                    <List.Item title="Hex" subtitle={convertedColour.hex} actions={
                         <ActionPanel>
                             <Action.CopyToClipboard content={convertedColour.hex} title="Copy Hex" />
-                            <Action.CopyToClipboard content={convertedColour.rgb} title="Copy RGB" />
-                            <Action.CopyToClipboard content={convertedColour.hsl} title="Copy HSL" />
-                            <Action title="Convert Another Colour" onAction={() => setConverted(false)} />
                         </ActionPanel>
-                    }
-                />
+                    } />
+                    <List.Item title="RGB" subtitle={convertedColour.rgb} actions={
+                        <ActionPanel>
+                            <Action.CopyToClipboard content={convertedColour.rgb} title="Copy RGB" />
+                        </ActionPanel>
+                    } />
+                    <List.Item title="HSL" subtitle={convertedColour.hsl} actions={
+                        <ActionPanel>
+                            <Action.CopyToClipboard content={convertedColour.hsl} title="Copy HSL" />
+                        </ActionPanel>
+                    } />
+                </List>
             )}
             {!converted && (
                 <Form
