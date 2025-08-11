@@ -1,21 +1,19 @@
-# Hello World
+# ModuTools Search
 
-This is a sample extension template. Please edit me!
+This Raycast extension has multiple commands, first there's the modutools search, which lets you search all the tools on https://beta.modu.tools, there's also the colour converter, which can convert hex, rgb, and hsl to hex, rgb, and hsl. Another command this extension has is timezone search, which lets you search every single timezone, and copy it to your clipboard. Finally, there's the uuid generator, which generates 8 UUIDs at a time, and you can copy whichever you want.
 
-# Quick start
+# Installation
 
 Install the require dependencies:
 
 ```bash
-npm install
+bun i
 ```
 
-Run the extension in development mode
+Build the extension
 
 ```bash
-npm run dev
+bun run build
 ```
 
-You should be able to find the "Hello" command in Raycast!
-
-See the [Raycast Developer Documentation](https://developers.raycast.com) for more information!
+If you use NPM, just replace bun with npm in the commands.

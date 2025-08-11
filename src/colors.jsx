@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Detail, Form, List, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, Color, Form, Icon, List, showToast, Toast } from "@raycast/api";
 import { useForm, FormValidation } from "@raycast/utils";
 import { useState } from "react";
 
@@ -209,17 +209,17 @@ export default function Command() {
                         <ActionPanel>
                             <Action.CopyToClipboard content={convertedColour.hex} title="Copy Hex" />
                         </ActionPanel>
-                    } />
+                    } icon={{ source: Icon.CircleFilled, tintColor: convertedColour.hex }} />
                     <List.Item title="RGB" subtitle={convertedColour.rgb} actions={
                         <ActionPanel>
                             <Action.CopyToClipboard content={convertedColour.rgb} title="Copy RGB" />
                         </ActionPanel>
-                    } />
+                    } icon={{ source: Icon.CircleFilled, tintColor: convertedColour.rgb }} />
                     <List.Item title="HSL" subtitle={convertedColour.hsl} actions={
                         <ActionPanel>
                             <Action.CopyToClipboard content={convertedColour.hsl} title="Copy HSL" />
                         </ActionPanel>
-                    } />
+                    } icon={{ source: Icon.CircleFilled, tintColor: convertedColour.hsl }} />
                 </List>
             )}
             {!converted && (
